@@ -1,0 +1,1 @@
+Binvenidos preparador que me corregirá el proyecto, espero que se encuentre bien. El proyecto será hecho por mí mismo solo y acá tendra todos los commits que ire haciendo durante el transcurro de la elaboración del proyecto valga la redundancia :D
