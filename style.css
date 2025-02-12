@@ -1,0 +1,75 @@
+body {
+    background-color: black;
+    color: white;
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    box-sizing: border-box;
+    border: 10px solid white; /* Ajustamos el grosor del borde blanco */
+    overflow: hidden; /* Para que las estrellas no se salgan del borde */
+}
+
+#title{
+    font-family: 'Press Start 2P'; /* Fuente estilo "videojuego arcade" */
+    background-color: transparent; /* Sin fondo */
+    padding: 0; /* Sin padding */
+    border: none; /* Sin borde */
+    position: absolute; /* Posicionamos el título de forma absoluta */
+    top: 10px; /* Lo colocamos en la parte superior */
+    left: 50%; /* Lo centramos horizontalmente */
+    transform: translateX(-50%); /* Ajustamos para centrarlo */
+}
+
+#part2 {
+    font-family: 'Press Start 2P'; /* Fuente estilo "videojuego arcade" */
+    background-color: transparent; /* Sin fondo */
+    padding: 0; /* Sin padding */
+    border: none; /* Sin borde */
+    position: absolute; /* Posicionamos el título de forma absoluta */
+    top: 50px; /* Lo colocamos en la parte superior */
+    left: 58%; /* Lo centramos horizontalmente */
+    transform: translateX(-50%); /* Ajustamos para centrarlo */
+}
+
+
+h1, h2 {
+    font-size: 2em; /* Tamaño de fuente común para h1 y h2 */
+    color: white;
+    background-color: black;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.letter {
+    color: inherit; /* Mantiene el color de la letra */
+    
+}
+
+.stars {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: white;
+    box-shadow: 0 0 2px white;
+    animation: moveStar 10s linear infinite, twinkling 2s infinite;
+}
+
+@keyframes twinkling {
+    0% { opacity: 0.5; }
+    50% { opacity: 1; }
+    100% { opacity: 0.5; }
+}
+
+@keyframes moveStar {
+    0% {
+        transform: translate(0, 0);
+    }
+    100% {
+        transform: translate(calc(100vw * var(--direction-x)), calc(100vh * var(--direction-y)));
+    }
+}

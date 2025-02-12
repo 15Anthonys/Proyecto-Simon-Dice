@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simon Dice</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Enlazamos la fuente estilo "videojuego arcade" -->
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="stars-container"></div>
+
+    <h1 id="title">
+        <span class="letter" style="color: blue;">S</span>
+        <span class="letter" style="color: red;">i</span>
+        <span class="letter" style="color: green;">m</span>
+        <span class="letter" style="color: yellow;">o</span>
+        <span class="letter" style="color: blue;">n</span>
+        
+    </h1>
+
+    <h2 id ="part2">
+        <span class="letter" style="color: red;">D</span>
+        <span class="letter" style="color: green;">i</span>
+        <span class="letter" style="color: yellow;">c</span>
+        <span class="letter" style="color: blue;">e</span>  
+    </h2>
+
+
+
+    
+
+    <script>
+        const starsContainer = document.getElementById('stars-container');
+        const numStars = 100;
+
+        for (let i = 0; i < numStars; i++) {
+            const star = document.createElement('div');
+            star.classList.add('stars');
+            star.style.top = `${Math.random() * 100}vh`;
+            star.style.left = `${Math.random() * 100}vw`;
+            star.style.setProperty('--direction-x', Math.random() * 2 - 1);
+            star.style.setProperty('--direction-y', Math.random() * 2 - 1);
+            starsContainer.appendChild(star);
+        }
+    </script>
+</body>
+</html>
