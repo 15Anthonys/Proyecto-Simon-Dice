@@ -1,6 +1,12 @@
 const starsContainer = document.getElementById('stars-container');
 const numStars = 100;
 var nombreJugador = "";
+let sonidoazul = new Audio();
+let secuencia = [];
+let contadorsegundos = 1000;
+let ronda = 1;
+let secuenciaUsuario = [];
+let indiceSecuencia = 0;
 
 for (let i = 0; i < numStars; i++) {
     const star = document.createElement('div');
@@ -26,8 +32,11 @@ function hideElements() {
         document.getElementById('boton-instrucciones').style.display = 'none';
         document.getElementById('botones').style.display = 'block';
         document.getElementById('boton-volveringame').style.display = 'block';
+        document.getElementById('contenedor-puntaje').style.display = 'block';
+        iniciarJuego();
         nombreJugador = userInput;
         console.log(nombreJugador);
+        localStorage.setItem('nombreJugador', nombreJugador);
     }
 }
 
@@ -40,6 +49,7 @@ function hideElementes3() {
     document.getElementById('instrucciones').style.display = 'block';
     document.getElementById('boton-volver').style.display = 'block'; 
     document.getElementById('alert-message').style.display = 'none';
+    
 }
 
 function RegresarElementes() {
@@ -57,8 +67,110 @@ function RegresarElementes2(){
     document.getElementById('botones').style.display = 'none';
     document.getElementById('boton-volveringame').style.display = 'none';
     document.getElementById('alert-message').style.display = 'none';
+    document.getElementById('contenedor-puntaje').style.display = 'none';
+
 }
+
+function desabilitarColoresBotones(){
+    document.getElementById('boton-amarillo').disabled = true;
+    document.getElementById('boton-azul').disabled = true;
+    document.getElementById('boton-verde').disabled = true;
+    document.getElementById('boton-rojo').disabled = true;
+}
+
+function habilitarColoresBotones(){
+    document.getElementById('boton-amarillo').disabled = false;
+    document.getElementById('boton-azul').disabled = false;
+    document.getElementById('boton-verde').disabled = false;
+    document.getElementById('boton-rojo').disabled = false;
+}
+
+function activarBrilloBoton(boton) {
+    boton.classList.add('brillo');
+    setTimeout(() => {
+        boton.classList.remove('brillo');
+    }, 300);
+}
+
+function agregarColorSecuencia() {
+    const colores = ['boton-rojo', 'boton-verde', 'boton-azul', 'boton-amarillo'];
+    const colorAleatorio = colores[Math.floor(Math.random() * colores.length)];
+    secuencia.push(colorAleatorio);
+}
+
+function generarSecuencia(longitud) {
+    const colores = ['boton-rojo', 'boton-verde', 'boton-azul', 'boton-amarillo'];
+    const nuevaSecuencia = [];
+    for (let i = 0; i < longitud; i++) {
+        const colorAleatorio = colores[Math.floor(Math.random() * colores.length)];
+        nuevaSecuencia.push(colorAleatorio);
+    }
+    return nuevaSecuencia;
+}
+
+function reproducirSecuencia(secuencia) {
+    let i = 0;
+    const intervalo = setInterval(() => {
+        if (i < secuencia.length) {
+            const boton = document.getElementById(secuencia[i]);
+            activarBrilloBoton(boton);
+            reproducirSonido(secuencia[i]);
+            i++;
+        } else {
+            clearInterval(intervalo);
+            habilitarColoresBotones();
+        }
+    }, 1000); // Intervalo entre cada brillo en milisegundos
+}
+
+function iniciarJuego() {
+    ronda = 1;
+    secuencia = [];
+    secuenciaUsuario = [];
+    indiceSecuencia = 0;
+    simonDicesecuencia();
+}
+
+function manejarClickBoton(color) {
+    const boton = document.getElementById(color);
+    activarBrilloBoton(boton);
+    reproducirSonido(color);
+    secuenciaUsuario.push(color);
+
+    if (secuenciaUsuario[indiceSecuencia] === secuencia[indiceSecuencia]) {
+        indiceSecuencia++;
+        if (indiceSecuencia === secuencia.length) {
+            secuenciaUsuario = [];
+            indiceSecuencia = 0;
+            setTimeout(simonDicesecuencia, 1000);
+        }
+    } else {
+        alert('¡Te has equivocado! El juego ha terminado.');
+        iniciarJuego();
+    }
+}
+
+function simonDicesecuencia(){
+    desabilitarColoresBotones();
+    agregarColorSecuencia(); // Agregar un nuevo color a la secuencia
+    reproducirSecuencia(secuencia);
+}
+
+window.onload = function() {
+    const nombreGuardado = localStorage.getItem('nombreJugador');
+    if (nombreGuardado) {
+        document.getElementById('user-input').value = nombreGuardado;
+    }
+};
+
+
+
 
 document.getElementById('boton-instrucciones').addEventListener('click', hideElementes3);
 document.getElementById('boton-volver').addEventListener('click', RegresarElementes);
 document.getElementById('boton-volveringame').addEventListener('click', RegresarElementes2);
+
+document.getElementById('boton-rojo').addEventListener('click', () => activarBrilloBoton(document.getElementById('boton-rojo')));
+document.getElementById('boton-verde').addEventListener('click', () => activarBrilloBoton(document.getElementById('boton-verde')));
+document.getElementById('boton-azul').addEventListener('click', () => activarBrilloBoton(document.getElementById('boton-azul')));
+document.getElementById('boton-amarillo').addEventListener('click', () => activarBrilloBoton(document.getElementById('boton-amarillo')));

@@ -161,7 +161,7 @@ h1, h2 {
     border: none;
     border-radius: 0;
     cursor: pointer;
-    transition: box-shadow 0.15s ease; 
+    transition: box-shadow 0.3s ease; 
 }
 
 #boton-rojo {
@@ -171,9 +171,6 @@ h1, h2 {
     left: 0;
 }
 
-#boton-rojo:hover {
-    box-shadow: 0 0 20px 10px rgba(255, 0, 0, 0.7);
-}
 
 #boton-verde {
     background-color: green;
@@ -182,9 +179,6 @@ h1, h2 {
     right: 0;
 }
 
-#boton-verde:hover {
-    box-shadow: 0 0 20px 10px rgba(0, 255, 0, 0.7);
-}
 
 #boton-azul {
     background-color: blue;
@@ -193,9 +187,6 @@ h1, h2 {
     left: 0;
 }
 
-#boton-azul:hover {
-    box-shadow: 0 0 20px 10px rgba(0, 0, 255, 0.7);
-}
 
 #boton-amarillo {
     background-color: yellow;
@@ -203,8 +194,9 @@ h1, h2 {
     bottom: 0;
     right: 0;
 }
-#boton-amarillo:hover {
-    box-shadow: 0 0 20px 10px rgba(255, 255, 0, 0.7);
+
+.brillo {
+    box-shadow: 0 0 20px 10px rgba(255, 255, 255, 0.7);
 }
 
 #boton-volveringame{
