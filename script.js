@@ -251,4 +251,7 @@ document.getElementById('boton-rojo').addEventListener('click', () => manejarCli
 document.getElementById('boton-verde').addEventListener('click', () => manejarClickBoton('boton-verde'));
 document.getElementById('boton-azul').addEventListener('click', () => manejarClickBoton('boton-azul'));
 document.getElementById('boton-amarillo').addEventListener('click', () => manejarClickBoton('boton-amarillo'));
+//<<<<<<< UnificarRama
 
+//=======
+//>>>>>>> SecuenciaCambios

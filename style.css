@@ -236,3 +236,20 @@ h1, h2 {
         transform: translate(calc(100vw * var(--direction-x)), calc(100vh * var(--direction-y)));
     }
 }
+
+
+@media screen and (min-wdth:400px) {
+    body{
+        background-color: none;
+    }
+
+
+}
+
+
+@media screen and (min-width:800px){
+    body{
+
+        background-color: none;
+    }
+}
