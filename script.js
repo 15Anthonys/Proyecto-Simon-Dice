@@ -161,22 +161,6 @@ window.onload = function() {
     }
 };
 
-@media screen and (min-wdth:400px) {
-    body{
-        background-color: none;
-    }
-
-
-}
-
-
-@media screen and (min-width:800px){
-    body{
-
-        background-color: none;
-    }
-}
-
 
 
 
