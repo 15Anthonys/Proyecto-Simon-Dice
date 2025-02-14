@@ -110,17 +110,17 @@ function generarSecuencia(longitud) {
 
 function reproducirSecuencia(secuencia) {
     let i = 0;
+    desabilitarColoresBotones();
     const intervalo = setInterval(() => {
         if (i < secuencia.length) {
             const boton = document.getElementById(secuencia[i]);
             activarBrilloBoton(boton);
-            reproducirSonido(secuencia[i]);
             i++;
         } else {
             clearInterval(intervalo);
             habilitarColoresBotones();
         }
-    }, 1000); // Intervalo entre cada brillo en milisegundos
+    }, 1000);
 }
 
 function iniciarJuego() {
@@ -134,7 +134,6 @@ function iniciarJuego() {
 function manejarClickBoton(color) {
     const boton = document.getElementById(color);
     activarBrilloBoton(boton);
-    reproducirSonido(color);
     secuenciaUsuario.push(color);
 
     if (secuenciaUsuario[indiceSecuencia] === secuencia[indiceSecuencia]) {
@@ -145,14 +144,13 @@ function manejarClickBoton(color) {
             setTimeout(simonDicesecuencia, 1000);
         }
     } else {
-        alert('¡Te has equivocado! El juego ha terminado.');
+        alert('¡Te has equivocado! El juego ha terminado. Presiona Aceptar para Reiniciar el juego.');
         iniciarJuego();
     }
 }
 
 function simonDicesecuencia(){
-    desabilitarColoresBotones();
-    agregarColorSecuencia(); // Agregar un nuevo color a la secuencia
+    agregarColorSecuencia();
     reproducirSecuencia(secuencia);
 }
 
@@ -174,3 +172,8 @@ document.getElementById('boton-rojo').addEventListener('click', () => activarBri
 document.getElementById('boton-verde').addEventListener('click', () => activarBrilloBoton(document.getElementById('boton-verde')));
 document.getElementById('boton-azul').addEventListener('click', () => activarBrilloBoton(document.getElementById('boton-azul')));
 document.getElementById('boton-amarillo').addEventListener('click', () => activarBrilloBoton(document.getElementById('boton-amarillo')));
+
+document.getElementById('boton-rojo').addEventListener('click', () => manejarClickBoton('boton-rojo'));
+document.getElementById('boton-verde').addEventListener('click', () => manejarClickBoton('boton-verde'));
+document.getElementById('boton-azul').addEventListener('click', () => manejarClickBoton('boton-azul'));
+document.getElementById('boton-amarillo').addEventListener('click', () => manejarClickBoton('boton-amarillo'));
