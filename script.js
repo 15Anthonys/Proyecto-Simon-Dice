@@ -1,12 +1,63 @@
 const starsContainer = document.getElementById('stars-container');
-const numStars = 100;
+const numStars = 250;
 var nombreJugador = "";
-let sonidoazul = new Audio();
+let sonidoazul = new Audio('316902__jaz_the_man_2__la.wav');
+let sonidorojo = new Audio('316905__jaz_the_man_2__fa-stretched.wav');
+let sonidoverde = new Audio('316908__jaz_the_man_2__re.wav');
+let sonidoamarillo = new Audio('316911__jaz_the_man_2__sol-stretched.wav');
 let secuencia = [];
 let contadorsegundos = 1000;
 let ronda = 1;
 let secuenciaUsuario = [];
 let indiceSecuencia = 0;
+let intervaloSecuencia;
+let puntaje = 0;
+
+function playSoundAzul() {
+    sonidoazul.pause();
+    sonidoazul.currentTime = 0;
+    sonidoazul.play();
+}
+function playSoundRojo() {
+    sonidorojo.pause();
+    sonidorojo.currentTime = 0;
+    sonidorojo.play();
+}
+function playSoundVerde() {
+    sonidoverde.pause();
+    sonidoverde.currentTime = 0;
+    sonidoverde.play();
+}
+function playSoundAmarillo() {
+    sonidoamarillo.pause();
+    sonidoamarillo.currentTime = 0;
+    sonidoamarillo.play();
+}
+
+
+function actualizarPuntaje() {
+    puntaje++;
+    document.getElementById('score').textContent = puntaje;
+}
+
+function reproducirSonido(color) {
+    switch (color) {
+        case 'boton-azul':
+            playSoundAzul();
+            break;
+        case 'boton-rojo':
+            playSoundRojo();
+            break;
+        case 'boton-verde':
+            playSoundVerde();
+            break;
+        case 'boton-amarillo':
+            playSoundAmarillo();
+            break;
+    }
+}
+
+
 
 for (let i = 0; i < numStars; i++) {
     const star = document.createElement('div');
@@ -16,6 +67,17 @@ for (let i = 0; i < numStars; i++) {
     star.style.setProperty('--direction-x', Math.random() * 2 - 1);
     star.style.setProperty('--direction-y', Math.random() * 2 - 1);
     starsContainer.appendChild(star);
+}
+
+function detenerSonidos() {
+    sonidoazul.pause();
+    sonidoazul.currentTime = 0;
+    sonidorojo.pause();
+    sonidorojo.currentTime = 0;
+    sonidoverde.pause();
+    sonidoverde.currentTime = 0;
+    sonidoamarillo.pause();
+    sonidoamarillo.currentTime = 0;
 }
 
 function hideElements() {
@@ -58,6 +120,8 @@ function RegresarElementes() {
     document.getElementById('boton-instrucciones').style.display = 'block';
     document.getElementById('instrucciones').style.display = 'none';
     document.getElementById('boton-volver').style.display = 'none'
+    detenerSonidos();
+    clearInterval(intervaloSecuencia);
 }
 
 function RegresarElementes2(){
@@ -68,6 +132,8 @@ function RegresarElementes2(){
     document.getElementById('boton-volveringame').style.display = 'none';
     document.getElementById('alert-message').style.display = 'none';
     document.getElementById('contenedor-puntaje').style.display = 'none';
+    detenerSonidos();
+    clearInterval(intervaloSecuencia);
 
 }
 
@@ -111,16 +177,19 @@ function generarSecuencia(longitud) {
 function reproducirSecuencia(secuencia) {
     let i = 0;
     desabilitarColoresBotones();
-    const intervalo = setInterval(() => {
+    document.getElementById('estado-juego').textContent = 'Reproduciendo secuencia...';
+    intervaloSecuencia = setInterval(() => {
         if (i < secuencia.length) {
             const boton = document.getElementById(secuencia[i]);
             activarBrilloBoton(boton);
+            reproducirSonido(secuencia[i]);
             i++;
         } else {
-            clearInterval(intervalo);
+            clearInterval(intervaloSecuencia);
             habilitarColoresBotones();
+            document.getElementById('estado-juego').textContent = 'Tu turno: Repite la secuencia';
         }
-    }, 1000);
+    }, 1500);
 }
 
 function iniciarJuego() {
@@ -128,12 +197,15 @@ function iniciarJuego() {
     secuencia = [];
     secuenciaUsuario = [];
     indiceSecuencia = 0;
+    puntaje = 0;
+    document.getElementById('score').textContent = puntaje;
     simonDicesecuencia();
 }
 
 function manejarClickBoton(color) {
     const boton = document.getElementById(color);
     activarBrilloBoton(boton);
+    reproducirSonido(color);
     secuenciaUsuario.push(color);
 
     if (secuenciaUsuario[indiceSecuencia] === secuencia[indiceSecuencia]) {
@@ -141,6 +213,7 @@ function manejarClickBoton(color) {
         if (indiceSecuencia === secuencia.length) {
             secuenciaUsuario = [];
             indiceSecuencia = 0;
+            actualizarPuntaje();
             setTimeout(simonDicesecuencia, 1000);
         }
     } else {
@@ -148,6 +221,7 @@ function manejarClickBoton(color) {
         iniciarJuego();
     }
 }
+
 
 function simonDicesecuencia(){
     agregarColorSecuencia();
@@ -177,3 +251,4 @@ document.getElementById('boton-rojo').addEventListener('click', () => manejarCli
 document.getElementById('boton-verde').addEventListener('click', () => manejarClickBoton('boton-verde'));
 document.getElementById('boton-azul').addEventListener('click', () => manejarClickBoton('boton-azul'));
 document.getElementById('boton-amarillo').addEventListener('click', () => manejarClickBoton('boton-amarillo'));
+
