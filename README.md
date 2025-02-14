@@ -1,1 +1,1 @@
-Binvenido el proyecto, espero que se encuentre bien. El proyecto será hecho por mí mismo solo y acá tendra todos los commits que ire haciendo durante el transcurro de la elaboración del proyecto valga la redundancia :D
+Binvenido el proyecto, espero que se encuentre bien. El proyecto será hecho por mí y compañero Santiago Gomez, acá tendra todos los commits que hemos hecho  durante el transcurro de la elaboración del proyecto valga la redundancia :D
