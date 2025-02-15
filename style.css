@@ -8,46 +8,235 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column; 
     height: 100vh;
     box-sizing: border-box;
-    border: 10px solid white; /* Ajustamos el grosor del borde blanco */
-    overflow: hidden; /* Para que las estrellas no se salgan del borde */
+    border: 10px solid white; 
+    overflow: hidden;
+    position: relative;
 }
 
-#title{
-    font-family: 'Press Start 2P'; /* Fuente estilo "videojuego arcade" */
-    background-color: transparent; /* Sin fondo */
-    padding: 0; /* Sin padding */
-    border: none; /* Sin borde */
-    position: absolute; /* Posicionamos el título de forma absoluta */
-    top: 10px; /* Lo colocamos en la parte superior */
-    left: 50%; /* Lo centramos horizontalmente */
-    transform: translateX(-50%); /* Ajustamos para centrarlo */
+#title {
+    font-family: 'arial';
+    background-color: transparent;
+    padding: 0; 
+    border: none;
+    position: absolute;
+    top: 10px;
+    z-index: 1;
 }
-
-#part2 {
-    font-family: 'Press Start 2P'; /* Fuente estilo "videojuego arcade" */
-    background-color: transparent; /* Sin fondo */
-    padding: 0; /* Sin padding */
-    border: none; /* Sin borde */
-    position: absolute; /* Posicionamos el título de forma absoluta */
-    top: 50px; /* Lo colocamos en la parte superior */
-    left: 58%; /* Lo centramos horizontalmente */
-    transform: translateX(-50%); /* Ajustamos para centrarlo */
-}
-
 
 h1, h2 {
-    font-size: 2em; /* Tamaño de fuente común para h1 y h2 */
+    font-size: 2em;
     color: white;
     background-color: black;
     padding: 10px;
     border-radius: 10px;
 }
 
+#part2 {
+    font-family: 'arial';
+    background-color: transparent;
+    padding: 0;
+    border: none;
+    position: absolute;
+    top: 50px;
+}
+
 .letter {
-    color: inherit; /* Mantiene el color de la letra */
+    color: inherit;
     
+}
+
+#instruction-text {
+    color: white;
+    margin-bottom: 10px;
+    z-index: 1;
+    position: relative; 
+    top: 0px; 
+    left: -80px;
+}
+
+#input-wrapper {
+    display: flex; 
+    align-items: center; 
+    gap: 10px; 
+}
+
+#alert-message{
+    position:absolute;
+    top: 200px;
+}
+
+#user-input {
+    padding: 5px 30px;
+    font-size: 1.2em; 
+    border: 2px solid white;
+    border-radius: 10px; 
+    background-color: black; 
+    color: grey; 
+    outline: none;
+    position: relative;
+    right: 20px;
+}
+
+#submit-button  {
+    padding: 7px 30px;
+    font-size: 1.2em; 
+    border: 2px solid white;
+    border-radius: 10px;
+    background-color: black;
+    color: white;
+    cursor: pointer;
+    z-index: 1;
+}
+
+#boton-instrucciones{
+
+    padding: 10px 50px;
+    font-size: 1.2em; 
+    border: 2px solid white;
+    border-radius: 10px; 
+    background-color: black;
+    color: white;
+    cursor: pointer;
+    z-index: 1; 
+    margin-top: 35px;
+    position: relative;
+    right: 20px;
+
+}
+
+#submit-button:hover, #boton-instrucciones:hover, #boton-volver:hover {
+    background-color: white;
+    color: black;
+}
+
+#instrucciones {
+    display: none;
+    position: center;
+    top: 50%;
+    left: 50%;
+    width: 80%;
+    max-width: 600px;
+    background-color: black;
+    color: white;
+    z-index: 2;
+    padding: 20px;
+    box-sizing: border-box;
+    border: 2px solid white;
+    border-radius: 10px;
+    text-align: left;
+}
+
+#boton-volver{
+    padding: 10px 50px;
+    font-size: 1.2em; 
+    border: 2px solid white;
+    border-radius: 10px; 
+    background-color: black;
+    color: white;
+    cursor: pointer;
+    z-index: 2;
+    margin-top: 15px;
+}
+
+#botones {
+    position: relative;
+    width: 170px;
+    height: 170px;
+    margin-top: 0px;
+
+}
+
+.color-button {
+    width: 80px;
+    height: 80px;
+    position: absolute;
+    border: none;
+    border-radius: 0;
+    cursor: pointer;
+    transition: box-shadow 0.3s ease; 
+}
+
+#boton-rojo {
+    background-color: red;
+    border-top-left-radius: 100%;
+    top: 0;
+    left: 0;
+}
+
+
+#boton-verde {
+    background-color: green;
+    border-top-right-radius: 100%;
+    top: 0;
+    right: 0;
+}
+
+
+#boton-azul {
+    background-color: blue;
+    border-bottom-left-radius: 100%;
+    bottom: 0;
+    left: 0;
+}
+
+
+#boton-amarillo {
+    background-color: yellow;
+    border-bottom-right-radius: 100%;
+    bottom: 0;
+    right: 0;
+}
+
+.brillo {
+    box-shadow: 0 0 20px 10px rgba(255, 255, 255, 0.7);
+}
+
+#boton-volveringame{
+    padding: 10px 50px;
+    font-family: 'arial';
+    font-size: 1.2em;
+    border: 2px solid white;
+    border-radius: 10px;
+    background-color: black;
+    color: white;
+    cursor: pointer;
+    z-index: 2;
+    margin-top: 35px;
+    position: relative;
+}
+
+#boton-volveringame:hover {
+    background-color: white;
+    color: black;
+}
+
+#tabla-puntajes-container {
+    position: fixed;
+    top: 40px;
+    left: 50px;
+    background-color: rgba(216, 216, 216, 0.8);
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+}
+
+#tabla-puntajes {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+#tabla-puntajes th, #tabla-puntajes td {
+    border: 1px solid #ffffff;
+    padding: 8px;
+}
+
+#tabla-puntajes th {
+    background-color: #000000;
+    left: 80%
 }
 
 .stars {
@@ -72,4 +261,24 @@ h1, h2 {
     100% {
         transform: translate(calc(100vw * var(--direction-x)), calc(100vh * var(--direction-y)));
     }
+}
+
+
+@media screen and (min-wdth:400px) {
+    body{
+        background-color: none;
+    }
+
+
+}
+
+
+@media screen and (min-width:800px){
+    body{
+
+        background-color: none;
+    }
+
+
+    
 }

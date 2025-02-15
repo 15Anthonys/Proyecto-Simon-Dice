@@ -5,45 +5,53 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Simon Dice</title>
     <link rel="stylesheet" href="style.css">
-    <!-- Enlazamos la fuente estilo "videojuego arcade" -->
-    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
 </head>
 <body>
     <div id="stars-container"></div>
 
-    <h1 id="title">
-        <span class="letter" style="color: blue;">S</span>
-        <span class="letter" style="color: red;">i</span>
-        <span class="letter" style="color: green;">m</span>
-        <span class="letter" style="color: yellow;">o</span>
-        <span class="letter" style="color: blue;">n</span>
-        
-    </h1>
-
-    <h2 id ="part2">
-        <span class="letter" style="color: red;">D</span>
-        <span class="letter" style="color: green;">i</span>
-        <span class="letter" style="color: yellow;">c</span>
-        <span class="letter" style="color: blue;">e</span>  
-    </h2>
+    <h1 id="title" style="color: white;">Simon Dice </h1>
 
 
 
-    
+    <p id="instruction-text">Ingrese su nombre en el siguiente campo:</p>
 
-    <script>
-        const starsContainer = document.getElementById('stars-container');
-        const numStars = 100;
+    <div id="input-wrapper">
+           
+        <input type="text" id="user-input" placeholder="Ingresar nombre">
+        <button id="submit-button">Jugar</button>
+    </div>
 
-        for (let i = 0; i < numStars; i++) {
-            const star = document.createElement('div');
-            star.classList.add('stars');
-            star.style.top = `${Math.random() * 100}vh`;
-            star.style.left = `${Math.random() * 100}vw`;
-            star.style.setProperty('--direction-x', Math.random() * 2 - 1);
-            star.style.setProperty('--direction-y', Math.random() * 2 - 1);
-            starsContainer.appendChild(star);
-        }
-    </script>
+
+    <p id="alert-message" style="color: red; display: none;"></p>
+
+    <button id="boton-instrucciones">Instrucciones</button>
+
+    <div id="instrucciones" style="display: none;">
+        <h3>Instrucciones</h3>
+        <p>El juego consiste en repetir la secuencia de colores que se muestra en pantalla. Cada vez que el jugador acierta, la secuencia se alarga en un color más. Si el jugador se equivoca, el juego termina. Para seguir la secuencia, deberás dar click a los botones con su color respectivo.</p>
+        <button id="boton-volver" style="display: none;">Volver</button>
+    </div>
+
+    <div id="botones" style="display: none;">
+        <button id="boton-rojo" class="color-button"></button>
+        <button id="boton-verde" class="color-button"></button>
+        <button id="boton-azul" class="color-button"></button>
+        <button id="boton-amarillo" class="color-button"></button>
+    </div>
+
+    <div
+        <button id="boton-volveringame" style="display: none;">Volver</button>
+    </div>
+    <div id="contenedor-puntaje" style="display: none;">
+        <p id="puntaje-text">Puntaje: <span id="score">0</span></p>
+        <p id="estado-juego"></p>
+    </div>
+    <div id="tabla-puntajes-container">
+        <h3>Mejores Puntajes</h3>
+        <table id="tabla-puntajes">
+            <tr><th>Nombre</th><th>Puntaje</th></tr>
+        </table>
+    </div>
+    <script src="script.js"></script>
 </body>
 </html>
