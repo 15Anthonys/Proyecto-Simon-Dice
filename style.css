@@ -213,6 +213,32 @@ h1, h2 {
     color: black;
 }
 
+#tabla-puntajes-container {
+    position: fixed;
+    top: 40px;
+    left: 50px;
+    background-color: rgba(216, 216, 216, 0.8);
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+}
+
+#tabla-puntajes {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+#tabla-puntajes th, #tabla-puntajes td {
+    border: 1px solid #ffffff;
+    padding: 8px;
+}
+
+#tabla-puntajes th {
+    background-color: #000000;
+    left: 80%
+}
+
 .stars {
     position: absolute;
     width: 2px;
@@ -252,4 +278,7 @@ h1, h2 {
 
         background-color: none;
     }
+
+
+    
 }
