@@ -192,6 +192,32 @@ function reproducirSecuencia(secuencia) {
     }, 1500);
 }
 
+function guardarPuntaje() {
+    let mejoresPuntajes = JSON.parse(localStorage.getItem('mejoresPuntajes')) || [];
+    const jugadorExistente = mejoresPuntajes.find(p => p.nombre === nombreJugador);
+    if (jugadorExistente) {
+        if (puntaje > jugadorExistente.puntaje) {
+            jugadorExistente.puntaje = puntaje;
+        }
+    } else {
+        mejoresPuntajes.push({ nombre: nombreJugador, puntaje: puntaje });
+    }
+    mejoresPuntajes.sort((a, b) => b.puntaje - a.puntaje);
+    localStorage.setItem('mejoresPuntajes', JSON.stringify(mejoresPuntajes));
+    mostrarMejoresPuntajes();
+}
+
+function mostrarMejoresPuntajes() {
+    const mejoresPuntajes = JSON.parse(localStorage.getItem('mejoresPuntajes')) || [];
+    const tablaPuntajes = document.getElementById('tabla-puntajes');
+    tablaPuntajes.innerHTML = '<tr><th>Nombre</th><th>Puntaje</th></tr>';
+    mejoresPuntajes.forEach(puntaje => {
+        const fila = document.createElement('tr');
+        fila.innerHTML = `<td>${puntaje.nombre}</td><td>${puntaje.puntaje}</td>`;
+        tablaPuntajes.appendChild(fila);
+    });
+}
+
 function iniciarJuego() {
     ronda = 1;
     secuencia = [];
@@ -214,10 +240,15 @@ function manejarClickBoton(color) {
             secuenciaUsuario = [];
             indiceSecuencia = 0;
             actualizarPuntaje();
-            setTimeout(simonDicesecuencia, 1000);
+            desabilitarColoresBotones(); 
+            setTimeout(() => {
+                simonDicesecuencia();
+                habilitarColoresBotones();
+            }, 1000);
         }
     } else {
         alert('¡Te has equivocado! El juego ha terminado. Presiona Aceptar para Reiniciar el juego.');
+        guardarPuntaje();
         iniciarJuego();
     }
 }
